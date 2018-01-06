@@ -104,7 +104,7 @@ const processImage = path => {
     });
   });
 }
-var watcher = chokidar.watch('/Users/Manoj/Desktop', {
+var watcher = chokidar.watch('/Users/Aarav/Desktop', {
   ignored: /(^|[\/\\])\../,
   ignoreInitial: true,
   persistent: true
