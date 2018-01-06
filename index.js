@@ -35,7 +35,6 @@ const processImage = path => {
   PNGCrop.crop(path, path + '.2', config1, function (err) {
     if (err) throw err;
     exec(`tesseract "${path}.2" "${path}.2.log"`, (err, stdout, stderr) => {
-      fs.unlink(`${path}.2`, () => { });
       if (err) {
         // node couldn't execute the command
         console.log(`err: ${err}`);
@@ -105,7 +104,7 @@ const processImage = path => {
     });
   });
 }
-var watcher = chokidar.watch('/Users/nicholasclark/Desktop', {
+var watcher = chokidar.watch('/Users/Manoj/Desktop', {
   ignored: /(^|[\/\\])\../,
   ignoreInitial: true,
   persistent: true
