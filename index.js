@@ -1,7 +1,6 @@
 const fs = require('fs');
 const chokidar = require('chokidar');
 const { exec } = require('child_process');
-const PNGCrop = require('png-crop');
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 const colors = require('colors');
@@ -26,24 +25,18 @@ const occurrences = (string, subString, allowOverlapping) => {
 }
 
 const processImage = path => {
-  const top = 400;
-  const bottom = 900;
-  const left = 150;
-  var config1 = { width: 1174 - left - left, height: 2278 - top - bottom, top, left };
   console.log('\033c')
   console.log('Processing...');
-  PNGCrop.crop(path, path + '.2', config1, function (err) {
     if (err) throw err;
-    exec(`tesseract "${path}.2" "${path}.2.log"`, (err, stdout, stderr) => {
-      fs.unlink(`${path}.2`, () => { });
+    exec(`tesseract "${path}" "${path}.log"`, (err, stdout, stderr) => {
       if (err) {
         // node couldn't execute the command
         console.log(`err: ${err}`);
         return;
       }
 
-      const contents = fs.readFileSync(`${path}.2.log.txt`, 'utf8');
-      fs.unlink(`${path}.2.log.txt`, () => { });
+      const contents = fs.readFileSync(`${path}.log.txt`, 'utf8');
+      fs.unlink(`${path}.log.txt`, () => { });
 
       const lines = contents.split('\n').filter(x => x);
       const title = lines.slice(0, lines.length - 3).join(' ');
@@ -105,7 +98,7 @@ const processImage = path => {
     });
   });
 }
-var watcher = chokidar.watch('/Users/nicholasclark/Desktop', {
+var watcher = chokidar.watch('/Users/Manoj/Desktop', {
   ignored: /(^|[\/\\])\../,
   ignoreInitial: true,
   persistent: true
