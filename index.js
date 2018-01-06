@@ -1,7 +1,6 @@
 const fs = require('fs');
 const chokidar = require('chokidar');
 const { exec } = require('child_process');
-const PNGCrop = require('png-crop');
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 const colors = require('colors');
