@@ -29,7 +29,7 @@ const processImage = path => {
   const top = 300;
   const bottom = 1150;
   const left = 135;
-  const right = 150;
+  const right = 200;
   var config1 = { width: 1174 - left - left, height: 2278 - top - bottom, top, left };
   console.log('\033c')
   console.log('Processing...');
