@@ -29,8 +29,7 @@ const processImage = path => {
   const top = 300;
   const bottom = 1150;
   const left = 135;
-  const right = 200;
-  var config1 = { width: 1174 - left - left, height: 2278 - top - bottom, top, left };
+  var config1 = { width: 1200 - left - left, height: 2278 - top - bottom, top, left };
   console.log('\033c')
   console.log('Processing...');
   PNGCrop.crop(path, path + '.2', config1, function (err) {
